@@ -16,6 +16,12 @@ greatest_decrease = []
 increase_date = []
 decrease_date = []
 
+#Formats for results
+formatted_float = "${:,.2f}".format(net_total)
+formatted_float1 = "${:,.2f}".format(average_change)
+formatted_float2 = "${:,.2f}".format(greatest_increase)
+formatted_float3 = "${:,.2f}".format(greatest_decrease)
+
 #Opening the csv file and identifying items
 with open(csvpath, encoding='utf-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',')
@@ -44,6 +50,6 @@ with open(output_file, 'w') as datafile:
                     "Total Months: " + total_months +
                     "Net Total: " + net_total + 
                     "Average Change: " + average_change +
-                    "Greatest Increase in Profits: " + greatest_increase +
-                    "Greatest Decrease in Losses: " + greatest_decrease ])
+                    "Greatest Increase in Profits: " + " (" + greatest_increase + ") " +
+                    "Greatest Decrease in Losses: " + " (" + greatest_decrease + ") "])
                     ## Return to add dates to both Increase and Decrease (right above here)
