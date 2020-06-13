@@ -12,22 +12,27 @@ net_total = []
 average_change = []
 greatest_increase = []
 greatest_decrease = []
+#Attempt to add month-year to results
+increase_date = []
+decrease_date = []
 
 #Opening the csv file and identifying items
 with open(csvpath, encoding='utf-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',')
     for item in csvreader:
-        total_months.append(item[0])
-        net_total.append(item[1])
+        total_months.append(sum(item[0]))
+        net_total.append(sum(item[1]))
         
         #Attempting to calc the average_change
         average_change = round(int(sum(item[1])) / len(item[1]), 2)
 
         #Attempting to calc the greatest_increase
         greatest_increase = round(int(max(item[1])), 2)
+        #Insert here the formula to attach date associated with the max value
 
         #Attempting to calc the greatest_decrease
         greatest_decrease = round(int(min(item[1])), 2)
+        #Insert here the formula to attach date associated with min value
 
 #Creating a new file for results
 new_csv = zip(total_months, net_total, average_change, greatest_increase, greatest_decrease)
