@@ -5,7 +5,7 @@ from csv import writer
 from itertools import count
 
 #Create file path
-csvpath = os.path.join('..','Resources','budget_data.csv')
+csvpath = os.path.join('Resources','budget_data.csv')
 
 #Create my lists
 total_months = []
@@ -29,13 +29,20 @@ num_rows = 0
 #Opening the csv file and identifying items
 with open(csvpath, encoding='utf-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',')
+
+    #Add next function here since we have a header row
+    header = next(csvreader)
+
     for item in csvreader:
 
         total_months.append(count(num_rows))
-        for rows in csvreader:
-            num_rows += 1
+        ##for rows in csvreader:
+            ##num_rows += 1
 
-        net_total.append('${:.0f}'.format(sum(int(item[1]))))
+        ##net_total.append('${:.0f}'.format(sum(int(item[1]))))
+        print('testing.: ', item[1])
+        net_total.append('${}'.format(sum(int(item[1]))))
+
         
         #Attempting to calc the average_change
         average_change = '${:.0f}'.format(float(sum(item[1])) / ((item[1])), 2)
