@@ -10,7 +10,7 @@ count = 0
 with open(budget_csv , 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',')
     header = next(csvreader)
-    
+        
     for line in csvreader:
         count = count + 1
 
@@ -26,15 +26,25 @@ with open(budget_csv , 'r') as csvfile:
         max_profit = max([dates["Profit/Losses"] for dates in data_results])
         great_loss = min([dates["Profit/Losses"] for dates in data_results])
    
-    print("-----------------------------------")
-    print("Financial Analysis:")
-    print("-----------------------------------")
-    print(f"Total Months: {count}")
-    print(f"Total (Net): $ {total}")
-    print(f"Average Change: $ {avg}")
+
     for dates in data_results:
         if dates["Profit/Losses"] == max_profit:
-            print("Greatest Increase in Profits: " + dates["Date"] + " ($" , dates["Profit/Losses"] , ")")
+            max_date = dates["Date"]
+
         if dates["Profit/Losses"] == great_loss:
-            print("Greatest Decrease in Losses: " + dates["Date"] + " ($" , dates["Profit/Losses"] , ")")
-    print("-----------------------------------")   
+            loss_date = dates["Date"]
+
+
+output_data = os.path.join('Analysis','financial_analysis.txt')
+
+with open(output_data, 'w') as datafile:
+    output_string = (f"Financial Analysis: \n"
+                     "--------------------------------------------\n"
+                     f"Total Months: {count}\n"
+                     f"Total (Net): ${count}\n"
+                     f"Average Change: $ {avg}\n"
+                     f"Greatest Increase in Profits: {max_date} ${max_profit}\n"
+                     f"Greatest Increase in Losses: {loss_date} ${great_loss}\n")
+
+    datafile.write(output_string)
+    print(output_string)

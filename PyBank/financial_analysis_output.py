@@ -31,17 +31,36 @@ with open(budget_csv , 'r') as csvfile:
                 increase = dates["Date"], dates["Profit/Losses"]
             if dates["Profit/Losses"] == great_loss:
                 decrease = dates["Date"], dates["Profit/Losses"]
+
+#    print("----------------------------------------------------------------------")
+#    print("Financial Analysis:")
+#    print("----------------------------------------------------------------------")
+#    print(f"Total Months: {count}")
+#    print(f"Total (Net): $ {total}")
+#    print(f"Average Change: $ {avg}")
+#    for dates in data_results:
+#        if dates["Profit/Losses"] == max_profit:
+#            print("Greatest Increase in Profits: " + dates["Date"] + " ($" , dates["Profit/Losses"] , ")")
+#        if dates["Profit/Losses"] == great_loss:
+#            print("Greatest Decrease in Losses: " + dates["Date"] + " ($" , dates["Profit/Losses"] , ")")
+#    print("----------------------------------------------------------------------")
    
 output_data = os.path.join('Analysis','financial_analysis.txt')
 
 with open(output_data, 'w') as datafile:
-    writer = csv.writer(datafile)
-    writer.writerow(["-------------------------------------------------------"])
-    writer.writerow([" Financial Analysis:"])
-    writer.writerow(["-------------------------------------------------------"])
-    writer.writerow([f" Total Months: {count} "])
-    writer.writerow([f" Total (Net): $ {total} "])
-    writer.writerow([f" Average Change: $ {avg} "])
-    writer.writerow([f" Greatest Increase in Profits: {increase} "])
-    writer.writerow([f" Greatest Decrease in Losses: {decrease} "])
-    writer.writerow(["--------------------------------------------------------"])
+    output_string =     
+        print("-----------------------------------")
+        print("Financial Analysis:")
+        print("-----------------------------------")
+        print(f"Total Months: {count}")
+        print(f"Total (Net): $ {total}")
+        print(f"Average Change: $ {avg}")
+        for dates in data_results:
+            if dates["Profit/Losses"] == max_profit:
+                print("Greatest Increase in Profits: " + dates["Date"] + " ($" , dates["Profit/Losses"] , ")")
+            if dates["Profit/Losses"] == great_loss:
+                print("Greatest Decrease in Losses: " + dates["Date"] + " ($" , dates["Profit/Losses"] , ")")
+        print("-----------------------------------")
+
+    datafile.write(output_string)
+    print(output_string)
