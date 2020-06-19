@@ -21,6 +21,7 @@ total_votes_3 = 0
 with open(election_csv, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',')
     header = next(csvreader)
+    print(f"CSV Header Row: {header}")
 
     # 4-To count the total votes by line (or row); set counter:
     for line in csvreader:

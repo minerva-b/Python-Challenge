@@ -11,10 +11,11 @@ data_results = []
 # 5-To help count total months you must set it to start counting at 0:
 count = 0
 
-# 3-Open and read the data in the csv file: 
+# 3-Open, read the data in the csv file, and store and print the header row: 
 with open(budget_csv , 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',')
     header = next(csvreader)
+    print(f"CSV Header Row: {header}")
 
     # 4-To count the total months by line (or row) I set a counter (since total months is essentially the total lines in the file):    
     for line in csvreader:
