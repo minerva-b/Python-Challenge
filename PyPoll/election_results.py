@@ -41,19 +41,19 @@ with open(election_csv, 'r') as csvfile:
         # 10-Find the lines (or rows) that match ea candidate so we can calc the total votes per name & percent won per name:
         if line[2] == name_list[0]:
             total_votes_0 = total_votes_0 + 1
-        percent_won_0 = round((total_votes_0 / count) * 100, 3)
+        percent_won_0 = round((total_votes_0 / count), 3)
 
         if line[2] == name_list[1]:
             total_votes_1 = total_votes_1 + 1
-        percent_won_1 = round((total_votes_1 / count) * 100, 3)
+        percent_won_1 = round((total_votes_1 / count), 3)
 
         if line[2] == name_list[2]:
             total_votes_2 = total_votes_2 + 1
-        percent_won_2 = round((total_votes_2 / count) * 100, 3)
+        percent_won_2 = round((total_votes_2 / count), 3)
         
         if line[2] == name_list[3]:
             total_votes_3 = total_votes_3 + 1
-        percent_won_3 = round((total_votes_3 / count) * 100, 3)
+        percent_won_3 = round((total_votes_3 / count), 3)
         
         # 11-Find the max votes by combining the total_votes[0-3] and find who the max_votes belongs to:
         max_votes = max(total_votes_0, total_votes_1, total_votes_2, total_votes_3)
@@ -78,14 +78,16 @@ with open(output_results, 'w') as datafile:
     output_string = ("------------------------------------------------\n"
                     "Election Results: \n"
                     "------------------------------------------------\n"
-                    f"Total Votes: {count}\n"
+                    f"Total Votes: {count:,}\n"
                     "------------------------------------------------\n"
-                    f"{name_list[0]}: {percent_won_0}% ({total_votes_0})\n"
-                    f"{name_list[1]}: {percent_won_1}% ({total_votes_1})\n"
-                    f"{name_list[2]}: {percent_won_2}% ({total_votes_2})\n"
-                    f"{name_list[3]}: {percent_won_3}% ({total_votes_3})\n"
+                    f"{name_list[0]}: {percent_won_0:.3%} ({total_votes_0:,})\n"
+                    f"{name_list[1]}: {percent_won_1:.3%} ({total_votes_1:,})\n"
+                    f"{name_list[2]}: {percent_won_2:.3%} ({total_votes_2:,})\n"
+                    f"{name_list[3]}: {percent_won_3:.3%} ({total_votes_3:,})\n"
                     "------------------------------------------------\n"
                     f"Winner: {winner}\n"
                     "------------------------------------------------\n")
     datafile.write(output_string)
     print(output_string)
+
+csvfile.close()
